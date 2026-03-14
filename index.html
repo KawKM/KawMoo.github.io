@@ -3,30 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Professional Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        .header { background: #4CAF50; color: white; padding: 10px; text-align: center; }
-        .content { padding: 20px; }
-        .footer { background: #ccc; text-align: center; padding: 10px; position: relative; bottom: 0; width: 100%; }
+        .tab { display: none; }
+        .tab-button { cursor: pointer; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; margin: 5px; }
+        .tab-button.active { background: #0056b3; }
+        #portfolio { display: flex; flex-direction: column; align-items: center; }
+        header { background: #f8f9fa; padding: 20px; text-align: center; }
+        footer { text-align: center; padding: 10px; background: #f8f9fa; }
+        .content { width: 100%; max-width: 800px;  }
+        @media (max-width: 600px) {
+            .tab-button { width: 100%; }
+        }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>My Portfolio</h1>
+    <header>
+        <h1>My Professional Portfolio</h1>
+        <div>
+            <button class="tab-button active" onclick="openTab('projects')">Projects</button>
+            <button class="tab-button" onclick="openTab('resume')">Resume</button>
+            <button class="tab-button" onclick="openTab('about')">About Me</button>
+        </div>
+    </header>
+    <div id="portfolio">
+        <div id="projects" class="tab" style="display: block;">
+            <div class="content">
+                <h2>Projects</h2>
+                <p>Project 1: Description.</p>
+                <p>Project 2: Description.</p>
+            </div>
+        </div>
+        <div id="resume" class="tab">
+            <div class="content">
+                <h2>Resume</h2>
+                <p>Download my <a href="resume.pdf" target="_blank">resume</a>.</p>
+            </div>
+        </div>
+        <div id="about" class="tab">
+            <div class="content">
+                <h2>About Me</h2>
+                <p>Hello! I am a professional web developer.</p>
+            </div>
+        </div>
     </div>
-    <div class="content">
-        <h2>About Me</h2>
-        <p>Welcome to my portfolio website. Here you can find information about my projects and skills.</p>
-        <h2>Projects</h2>
-        <ul>
-            <li>Project 1</li>
-            <li>Project 2</li>
-            <li>Project 3</li>
-        </ul>
-    </div>
-    <div class="footer">
-        <p>Contact: email@example.com</p>
-    </div>
+    <footer>
+        <p>&copy; 2026 My Portfolio</p>
+    </footer>
+    <script>
+        function openTab(tabName) {
+            var tabs = document.getElementsByClassName('tab');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].style.display = 'none';
+            }
+            var buttons = document.getElementsByClassName('tab-button');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+            document.getElementById(tabName).style.display = 'block';
+            event.currentTarget.classList.add('active');
+        }
+    </script>
 </body>
 </html>
